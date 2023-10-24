@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'reviews/new'
+  get 'reviews/create'
+  get 'reviews/destroy'
   devise_for :users
   root to: "rocks#index"
 
