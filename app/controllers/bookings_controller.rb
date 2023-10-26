@@ -2,6 +2,10 @@ class BookingsController < ApplicationController
   before_action :set_rock, only: %[create destroy]
   before action :set_booking, only: %[accept destroy]
 
+  # def new
+  #   @bookmarks = Bookmark.new
+  # end
+
   def create
     @booking = Booking.new(booking_params)
     @booking.rock = @rock
