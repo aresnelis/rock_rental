@@ -5,4 +5,6 @@
 <h4>Daily Price : $<%= @rock.daily_price %> </h4>
 <p>Description: <%= @rock.user.email %></h6>
 
+<%= link_to "Make a booking", new_rock_booking_path(@rock) %>
+
 <%= link_to "Home", root_path %>
