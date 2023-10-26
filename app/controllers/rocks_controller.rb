@@ -32,6 +32,6 @@ class RocksController < ApplicationController
   end
 
   def set_rock
-    Rock.find(params[:id])
+    @rock = Rock.find(params[:id])
   end
 end
