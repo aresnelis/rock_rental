@@ -19,9 +19,10 @@ rocks_data = [
 
 puts 'Cleaning database'
 Rock.destroy_all
+User.destroy_all
 rocks_data.each do |rock_data|
-  puts rock_data[:type]
-  Rock.create!(rock_type: rock_data[:type], daily_price: rock_data[:daily_price], description: rock_data[:description], user_id: 1)
+  user = User.create(email: Faker::Internet.email, password: Faker::Internet.password)
+  rock = Rock.new(rock_type: rock_data[:rock_type], daily_price: rock_data[:daily_price], description: rock_data[:description])
+  rock.user = user
+  rock.save
 end
-
-puts "Finished"
