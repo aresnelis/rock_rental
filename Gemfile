@@ -10,6 +10,10 @@ gem "rails", "~> 7.0.8"
 
 gem "devise"
 
+# Faker
+
+gem "faker"
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
