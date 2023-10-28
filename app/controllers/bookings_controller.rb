@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
-  before_action :set_rock, only: [:new, :create]
-  before_action :set_booking, only: :destroy
+  before_action :set_rock, only: [:new, :create, :show]
+  before_action :set_booking, only: [:destroy, :show]
+
 
   def new
     @booking = Booking.new
@@ -16,6 +17,11 @@ class BookingsController < ApplicationController
       render :new, status: :unprocessable_entry
     end
   end
+
+  def show
+    @booking = Booking.find(params[:id])
+  end
+
 
   def accept
     # if dates are available change status to booked
