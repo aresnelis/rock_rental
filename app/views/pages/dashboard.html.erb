@@ -6,3 +6,10 @@
 <%= link_to "Delete", booking_path(booking), class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
 </div>
 <% end %>
+
+<% @my_bookings.each do |booking| %>
+<div>
+<%= booking.start_time %>
+<%= link_to "Accept", accept_booking_path(booking), class:"btn btn-success", data: {turbo_method: :patch} %>
+</div>
+<% end %>

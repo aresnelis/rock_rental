@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_rock, only: [:new, :create, :show]
-  before_action :set_booking, only: [:destroy, :show]
+  before_action :set_booking, only: [:update, :destroy, :show]
 
 
   def new
@@ -22,14 +22,8 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
-
   def accept
-    # if dates are available change status to booked
-    # if dates are unavailable change status to available
-  end
-
-  def decline
-
+    raise
   end
 
   def destroy
@@ -40,7 +34,7 @@ class BookingsController < ApplicationController
 private
 
   def booking_params
-    params.require(:booking).permit(:start_time, :end_time, :rock_id)
+    params.require(:booking).permit(:start_time, :end_time, :rock_id, :status)
   end
 
   def set_booking

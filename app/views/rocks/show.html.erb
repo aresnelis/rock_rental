@@ -16,7 +16,11 @@
 
 <%= link_to "Make a booking", new_rock_booking_path(@rock) %>
 <%# will add logic on the review button: only shown when user has a past booking %>
-<%= link_to "Write a Review", new_booking_review_path(@booking), class: "btn btn-primary" %>
+<%
+=begin%>
+ <%= link_to "Write a Review", new_booking_review_path(@booking), class: "btn btn-primary" %>
+<%
+=end%>
 
 
 <%= link_to "Home", root_path %>
