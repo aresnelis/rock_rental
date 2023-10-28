@@ -7,4 +7,16 @@
   <%= cl_image_tag @rock.photo.key, width: 400, height: 300, crop: :fill %>
 <% end %>
 
+<% @rock.reviews.each do |review| %>
+<div>
+<%= review.rating %>
+<%= review.content %>
+</div>
+<% end %>
+
+<%= link_to "Make a booking", new_rock_booking_path(@rock) %>
+<%# will add logic on the review button: only shown when user has a past booking %>
+<%= link_to "Write a Review", new_booking_review_path(@booking), class: "btn btn-primary" %>
+
+
 <%= link_to "Home", root_path %>
