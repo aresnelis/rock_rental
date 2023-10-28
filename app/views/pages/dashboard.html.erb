@@ -2,7 +2,10 @@
 
 <% @bookings.each do |booking| %>
 <div>
-<%= booking.start_time %>
-<%= link_to "Delete", booking_path(booking), class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-</div>
+  <%= booking.start_time %>
+  <%= link_to "Delete", booking_path(booking), class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  <% if (booking.end_time < Time.now && booking.review.nil?) %>
+    <%= link_to "Write a Review", new_booking_review_path(booking), class: "btn btn-primary" %>
+  <% end %>
+  </div>
 <% end %>

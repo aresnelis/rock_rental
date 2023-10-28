@@ -7,8 +7,7 @@ class RocksController < ApplicationController
 
   def show
     @rock = Rock.find(params[:id])
-    @booking = Booking.where(rock: @rock, user: current_user).first
-  end
+    end
 
   def new
     @rock = Rock.new
