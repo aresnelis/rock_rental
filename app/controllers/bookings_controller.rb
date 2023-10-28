@@ -1,14 +1,16 @@
 class BookingsController < ApplicationController
-  before_action :set_rock, only: %[create destroy]
-  before action :set_booking, only: %[accept destroy]
+  before_action :set_rock, only: [:new, :create, :show]
+  before_action :set_booking, only: [:destroy, :show]
 
-  # def new
-  #   @bookmarks = Bookmark.new
-  # end
+
+  def new
+    @booking = Booking.new
+  end
 
   def create
     @booking = Booking.new(booking_params)
     @booking.rock = @rock
+    @booking.user = current_user
     if @booking.save
       redirect_to rock_path(@rock)
     else
@@ -16,10 +18,14 @@ class BookingsController < ApplicationController
     end
   end
 
+  def show
+    @booking = Booking.find(params[:id])
+  end
+
+
   def accept
     # if dates are available change status to booked
     # if dates are unavailable change status to available
-
   end
 
   def decline
@@ -28,13 +34,13 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking.destroy
-    redirect_to rock_path(@booking.rock)
+    redirect_to dashboard_path
   end
 
 private
 
   def booking_params
-    params.require(:booking).permit(:start_time, :end_time)
+    params.require(:booking).permit(:start_time, :end_time, :rock_id)
   end
 
   def set_booking

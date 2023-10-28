@@ -5,4 +5,16 @@
 <h4>Daily Price : $<%= @rock.daily_price %> </h4>
 <p>Description: <%= @rock.user.email %></h6>
 
+<% @rock.reviews.each do |review| %>
+<div>
+<%= review.rating %>
+<%= review.content %>
+</div>
+<% end %>
+
+<%= link_to "Make a booking", new_rock_booking_path(@rock) %>
+<%# will add logic on the review button: only shown when user has a past booking %>
+<%= link_to "Write a Review", new_booking_review_path(@booking), class: "btn btn-primary" %>
+
+
 <%= link_to "Home", root_path %>
