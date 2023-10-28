@@ -14,6 +14,12 @@ class RocksController < ApplicationController
 
   def create
     @rock = Rock.new(rock_params)
+    @rock.user = current_user
+    if @rock.save
+      redirect_to rock_path(@rock)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
@@ -23,12 +29,14 @@ class RocksController < ApplicationController
   end
 
   def destroy
+    @rock.destroy
+    redirect_to root_path, status: :see_other
   end
 
   private
 
   def rock_params
-    params.require(:rock).permit(:type, :daily_price, :description)
+    params.require(:rock).permit(:type, :daily_price, :description, :photo)
   end
 
   def set_rock
