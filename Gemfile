@@ -14,6 +14,10 @@ gem "devise"
 
 gem "faker"
 
+# Cloudinary
+
+gem "cloudinary"
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 

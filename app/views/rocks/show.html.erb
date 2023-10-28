@@ -1,9 +1,11 @@
 <h1> Rock show page </h1>
 
-
 <h1> <%= @rock.rock_type %> </h1>
 <h4>Daily Price : $<%= @rock.daily_price %> </h4>
-<p>Description: <%= @rock.user.email %></h6>
+<p>Description: <%= @rock.user.email %></p>
+<% if @rock.photo.attached? %>
+  <%= cl_image_tag @rock.photo.key, width: 400, height: 300, crop: :fill %>
+<% end %>
 
 <% @rock.reviews.each do |review| %>
 <div>
