@@ -1,4 +1,3 @@
-
 <h2> Hello, <%= @current_user.first_name %> </h2>
   <% if @current_user.host %>
 
@@ -8,23 +7,15 @@
     </button>
 
   <% else %>
-
-
-  <% end %>
-
     <% @bookings.each do |booking| %>
       <div>
         <%= booking.start_time %>
         <%= link_to "Delete", booking_path(booking), class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
       </div>
     <% end %>
+  <% end %>
 
-
-
-
-
-
-
+    
 
   <!-- Modal to add new rock -->
   <div class="modal fade" id="addNewRock" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addNewRockLabel" aria-hidden="true">
@@ -49,3 +40,17 @@
       <% end %>
     </div>
   </div>
+
+<!-- TODO we need to sort where the below code fits in with the above -->
+
+<% @my_bookings.each do |booking| %>
+  <div>
+    <%= booking.start_time %>
+    <%= link_to "Accept", accept_booking_path(booking), class:"btn btn-success", data: {turbo_method: :patch} %>
+    <%= link_to "Decline", decline_booking_path(booking), class:"btn btn-warning", data: {turbo_method: :patch} %>
+    <%= link_to "Delete", booking_path(booking), class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+    <% if (booking.end_time < Time.now && booking.review.nil?) %>
+      <%= link_to "Write a Review", new_booking_review_path(booking), class: "btn btn-primary" %>
+    <% end %>
+  </div>
+<% end %>
