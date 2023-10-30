@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :bookings, only: [:destroy] do
     member do
-      patch :accept
+      patch :accept, :decline
     end
     resources :reviews, only: [:new, :create]
   end

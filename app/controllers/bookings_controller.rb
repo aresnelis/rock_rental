@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_rock, only: [:new, :create, :show]
-  before_action :set_booking, only: [:update, :destroy, :show]
+  before_action :set_booking, only: [:accept, :decline, :destroy, :show]
 
 
   def new
@@ -23,7 +23,19 @@ class BookingsController < ApplicationController
   end
 
   def accept
-    raise
+    if @booking.update(status: 'accepted')
+      redirect_to dashboard_path, notice: 'Booking accepted'
+    else
+      redirect_to dashboard_path, alert: 'Failed to accept booking'
+    end
+  end
+
+  def decline
+    if @booking.update(status: 'declined')
+      redirect_to dashboard_path, notice: 'Booking declined'
+    else
+      redirect_to dashboard_path, alert: 'Failed to decline booking'
+    end
   end
 
   def destroy
