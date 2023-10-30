@@ -11,16 +11,10 @@
 <div>
 <%= review.rating %>
 <%= review.content %>
+<%= link_to "Delete", review_path(review), class:"btn btn-warning", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
 </div>
 <% end %>
 
 <%= link_to "Make a booking", new_rock_booking_path(@rock) %>
-<%# will add logic on the review button: only shown when user has a past booking %>
-<%
-=begin%>
- <%= link_to "Write a Review", new_booking_review_path(@booking), class: "btn btn-primary" %>
-<%
-=end%>
-
 
 <%= link_to "Home", root_path %>
