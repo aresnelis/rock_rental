@@ -1,55 +1,51 @@
 
 <h2> Hello, <%= @current_user.first_name %> </h2>
-<% if @current_user.host %>
+  <% if @current_user.host %>
 
-<!--Add rock Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newRockModal">
-  Add a new rock!
-</button>
+  <!--Add rock Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewRock">
+      Add a new rock!
+    </button>
 
-
-
-
+  <% else %>
 
 
-<% else %>
+  <% end %>
 
-
-<% end %>
-
-<% @bookings.each do |booking| %>
-  <div>
-    <%= booking.start_time %>
-    <%= link_to "Delete", booking_path(booking), class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-  </div>
-<% end %>
+    <% @bookings.each do |booking| %>
+      <div>
+        <%= booking.start_time %>
+        <%= link_to "Delete", booking_path(booking), class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+      </div>
+    <% end %>
 
 
 
-<%# Modal to add a new rock %>
 
 
-<div class="modal fade" id="newRockModal" tabindex="-1" role="dialog" aria-labelledby="newRockModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
+
+
+
+  <!-- Modal to add new rock -->
+  <div class="modal fade" id="addNewRock" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addNewRockLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
       <%= simple_form_for(@rock) do |f| %>
-        <div class="modal-header">
-            <h5 class="modal-title" id="newRockModalLabel">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Add a new rock!</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
-            <%= f.input :rock_type %>
-            <%= f.input :daily_price %>
-            <%= f.input :description %>
-            <%= f.input :photo, as: :file %>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <%= f.submit "Add Rock" %>
-          </div>
-        </div>
+            <div class="modal-body">
+              <%= f.input :rock_type %>
+              <%= f.input :daily_price %>
+              <%= f.input :description %>
+              <%= f.input :photo, as: :file %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <%= f.submit "Add Rock" %>
+            </div>
+      </div>
       <% end %>
+    </div>
   </div>
-</div>
