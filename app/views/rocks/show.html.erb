@@ -8,12 +8,16 @@
 <% end %>
 
 <% @rock.reviews.each do |review| %>
-<div>
-<%= review.rating %>
-<%= review.content %>
-<%= link_to "Delete", review_path(review), class:"btn btn-warning", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-</div>
+  <div>
+    <p><%= review.rating %>/5:
+    <%= review.content %></p>
+<%# added logic to only see delete review button if you are the owner of the review %>
+    <% if current_user && current_user.id == review.booking_id %>
+      <%= link_to "Delete", review_path(review), class: "btn btn-warning", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+    <% end %>
+  </div>
 <% end %>
+
 
 <%= link_to "Make a booking", new_rock_booking_path(@rock) %>
 
