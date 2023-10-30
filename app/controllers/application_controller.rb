@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:host])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:host, :first_name, :last_name])
   end
 
 end
