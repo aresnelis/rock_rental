@@ -93,7 +93,13 @@ comments = [
   "I'm fascinated by this rock's color.",
   "I found this rock near a river.",
   "It's a lovely piece of history.",
-  "This rock has a story to tell."
+  "This rock has a story to tell.",
+  "Alex said it taste like cherry and vinegar!",
+  "My preciousssssss...",
+  "Please I am trap underneath, call 911...",
+  "One rock to rule them all.",
+  "Some said it was the ROCK OF DESTINY, but it just a tribute.",
+  "Is it a plane? Is it a bird? Maybe superman? no it's a flying rock, take cover!!!"
 ]
 
 bookings = Booking.all
