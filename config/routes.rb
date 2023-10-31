@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root to: "rocks#index"
   get '/dashboard', to: "pages#dashboard"
 
-  resources :rocks do
+  resources :rocks, only: [:create, :edit, :update, :destroy] do
     resources :bookings, only: [:new, :create, :show]
   end
 
