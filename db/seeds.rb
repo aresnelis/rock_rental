@@ -47,10 +47,22 @@ puts "Created #{Rock.count} rocks"
 puts 'Creating Bookings'
 
 users = User.all
-5.times do
+2.times do
   users.each do |user|
     start_time = Faker::Time.between(from: DateTime.now - 5, to: DateTime.now + 5)
     end_time = Faker::Time.between(from: DateTime.now + 6, to: DateTime.now + 20)
+    rock = Rock.all.sample.id
+    booking = Booking.new(start_time: start_time, end_time: end_time, rock_id: rock, user_id: user.id)
+    booking.save!
+  end
+end
+
+puts "creating past booking, to add reviews"
+
+5.times do
+  users.each do |user|
+    start_time = Faker::Time.between(from: DateTime.now + 5, to: DateTime.now + 5)
+    end_time = Faker::Time.between(from: DateTime.now - 6, to: DateTime.now - 20)
     rock = Rock.all.sample.id
     booking = Booking.new(start_time: start_time, end_time: end_time, rock_id: rock, user_id: user.id)
     booking.save!
@@ -61,7 +73,33 @@ puts "Created #{Booking.count} bookings"
 
 puts 'Creating Reviews'
 
-# TODO Reviews Seeds
+comments = [
+  "This rock is a work of art!",
+  "I love the texture of this rock.",
+  "A perfect addition to my garden.",
+  "The colors in this rock are amazing.",
+  "I found this rock on a hike.",
+  "This rock has a unique shape.",
+  "Great for landscaping projects.",
+  "I collect rocks, and this is a gem.",
+  "Small but beautiful rock.",
+  "A lovely addition to my rock collection.",
+  "This rock is so smooth to touch.",
+  "The patterns in this rock are fascinating.",
+  "Perfect for a paperweight.",
+  "A charming little rock.",
+  "I'm starting a rock garden with it.",
+  "A great piece of nature.",
+  "I'm fascinated by this rock's color.",
+  "I found this rock near a river.",
+  "It's a lovely piece of history.",
+  "This rock has a story to tell."
+]
+
+bookings = Booking.all
+  bookings.each do |booking|
+    review = Review.create!(content: comments.sample, rating: rand(6), booking_id: booking.id) if booking.end_time < Time.now
+end
 
 puts "Created #{Review.count} reviews"
 
