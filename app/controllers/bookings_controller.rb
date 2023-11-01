@@ -12,7 +12,7 @@ class BookingsController < ApplicationController
     @booking.rock = @rock
     @booking.user = current_user
     if @booking.save
-      redirect_to rock_path(@rock)
+      redirect_to dashboard_path
     else
       render :new, status: :unprocessable_entry
     end
