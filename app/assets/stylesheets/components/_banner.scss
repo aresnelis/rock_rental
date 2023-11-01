@@ -1,0 +1,35 @@
+@import "pages/home";
+
+.banner {
+  background-image: url("rockfield.jpg");
+  text-align: center;
+  height: 260px;
+  height: 265px;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  opacity: 0.8;
+  display: flex;
+  justify-content: center;
+
+}
+
+.banner-text {
+
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+
+  h1 {
+  font-family: 'Permanent Marker', cursive;
+  color: white;
+  text-shadow: 7px 3px 5px black;
+  font-size: 74px;
+  }
+
+  p {
+    color: white;
+    font-size: 30px;
+  }
+}
