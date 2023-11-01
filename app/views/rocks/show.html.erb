@@ -1,24 +1,41 @@
-<h1> Rock show page </h1>
-
-<h1> <%= @rock.rock_type %> </h1>
-<h4>Daily Price : $<%= @rock.daily_price %> </h4>
-<p>Description: <%= @rock.user.email %></p>
-<% if @rock.photo.attached? %>
-  <%= cl_image_tag @rock.photo.key, width: 400, height: 300, crop: :fill %>
-<% end %>
-
-<% @rock.reviews.each do |review| %>
-  <div>
-    <p><%= review.rating %>/5:
-    <%= review.content %></p>
-<%# added logic to only see delete review button if you are the owner of the review %>
-    <% if current_user && current_user.id == review.booking_id %>
-      <%= link_to "Delete", review_path(review), class: "btn btn-warning", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-    <% end %>
+<div class="show-page-container">
+  <div class="d-flex justify-content-around align-items-center show-page-card">
+    <div class="card custom-card shadow">
+      <img class="img-fluid" src="/assets/minitherock.png" alt="Card image cap" style="height: 350px; object-fit: cover;">
+        <h1> <%= @rock.rock_type %> </h1>
+        <p>Description: <%= @rock.description %></p>
+    </div>
+    <div class="booking-section">
+      <h4>Daily Price : $<%= @rock.daily_price %> </h4>
+      <%= link_to "Make a booking", new_rock_booking_path(@rock) %>
+    </div>
   </div>
-<% end %>
+  <div class="reviews-container">
+    <div class="reviews-cards">
+      <% @rock.reviews.each do |review| %>
+      <div>
+        <p><%= review.rating %>/5
+      </div>
+      <div>
+        <%= review.content %></p>
+        <%# added logic to only see delete review button if you are the owner of the review %>
+        <% if current_user && current_user.id == review.booking_id %>
+          <%= link_to "Delete", review_path(review), class: "btn btn-warning", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+        <% end %>
+    </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
 
-<%= link_to "Make a booking", new_rock_booking_path(@rock) %>
 
-<%= link_to "Home", root_path %>
+
+  <%
+=begin%>
+ <% if @rock.photo.attached? %>
+    <%= cl_image_tag @rock.photo.key, width: 400, height: 300, crop: :fill %>
+  <% end %>
+<%
+=end%>
