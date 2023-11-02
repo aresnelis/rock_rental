@@ -1,11 +1,12 @@
 // Import Google fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dosis&family=Heebo&family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis&family=Heebo&family=Josefin+Sans:ital@1&family=Permanent+Marker&display=swap');
 
 // Define fonts for body and headers
 $body-font: "Work Sans", "Helvetica", "sans-serif";
 $headers-font: "Nunito", "Helvetica", "sans-serif";
 $banner-font: 'Permanent Marker', 'cursive';
+$sub-text: 'Josefin Sans', 'sans-serif';
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
