@@ -9,6 +9,7 @@
     <h3> My Rocks </h3>
       <% @current_user.rocks.each do |rock| %>
         <div>
+          <%= cl_image_tag(rock.photo.key, alt:"Shows a photo of the rock for rent", style: "height: 350px; object-fit: cover;") %>
           <h4><%= rock.rock_type %></h4>
           <p> <%= rock.description %></p>
         </div>
@@ -49,6 +50,7 @@
   <% @my_bookings.each do |booking| %>
     <div>
       <% if @current_user.rocks.include?(booking.rock) %>
+          <%= cl_image_tag(@rock.photo.key, alt:"Shows a photo of the rock for rent", style: "height: 350px; object-fit: cover;") %>
           <h5> Rock: <%= booking.rock.rock_type %> </h5>
           <p> Start time: <%= booking.start_time %> </p>
           <p> End time: <%= booking.end_time %> </p>

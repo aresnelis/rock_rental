@@ -2,7 +2,7 @@
 <div class="bookings-container my-5">
   <h1> Reserve your dream Rock now! </h1>
   <div class="bookings-spacing d-flex justify-content-around align-items-center my-5">
-    <img class="img-fluid" src="/assets/minitherock.png" alt="Card image cap" style="height: 350px; object-fit: cover;">
+    <%= cl_image_tag(@rock.photo.key, alt:"Shows a photo of the rock for rent", style: "height: 350px; object-fit: cover;") %>
     <div class="select-dates">
       <%= simple_form_for [@rock, @booking] do |f| %>
         <%= f.input :start_time %>
