@@ -12,6 +12,7 @@
           <h4><%= rock.rock_type %></h4>
           <p> <%= rock.description %></p>
         </div>
+        <%= link_to "Delete Rock", rock_path(rock), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
       <% end %>
   </div>
 
@@ -42,6 +43,7 @@
       <% end %>
   </div>
 </div>
+
 
 <!-- TODO we need to sort where the below code fits in with the above -->
 <div>
