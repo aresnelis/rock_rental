@@ -1,7 +1,7 @@
 <div class="show-page-container">
   <div class="d-flex justify-content-around align-items-center show-page-card">
     <div class="card custom-card shadow">
-      <img class="img-fluid" src="/assets/minitherock.png" alt="Card image cap" style="height: 350px; object-fit: cover;">
+      <%= cl_image_tag(@rock.photo.key, alt:"Shows a photo of the rock for rent", style: "height: 350px; object-fit: cover;") %>
         <h1> <%= @rock.rock_type %> </h1>
         <p>Description: <%= @rock.description %></p>
     </div>
@@ -28,14 +28,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-  <%
-=begin%>
- <% if @rock.photo.attached? %>
-    <%= cl_image_tag @rock.photo.key, width: 400, height: 300, crop: :fill %>
-  <% end %>
-<%
-=end%>
