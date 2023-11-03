@@ -8,13 +8,26 @@
 
     <div class="m-5">
       <h3> My Rocks </h3>
+      <div class="row">
         <% @current_user.rocks.each do |rock| %>
-          <div>
-            <%= cl_image_tag(rock.photo.key, alt:"Shows a photo of the rock for rent", style: "height: 350px; object-fit: cover;") %>
-            <h4><%= rock.rock_type %></h4>
-            <p> <%= rock.description %></p>
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5" style="border: 2px solid #F148FB;">
+            <div class="card custom-card shadow">
+              <%= cl_image_tag(rock.photo.key, alt:"Shows a photo of the rock for rent", style: "height: 350px; object-fit: contain;") %>
+            </div>
+          <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center m-2">
+            <div>
+              <h5 class="card-title flex-grow-1"><%= rock.rock_type %></h5>
+            </div>
+            <div>
+              <h5 class="card-title">$<%= rock.daily_price %>/day</h5>
+            </div>
+          </div>
+          <p class="card-text" style="height: 50px; overflow: auto;"><%= rock.description %></p>
+          </div>
           </div>
         <% end %>
+      </div>
     </div>
 
   <% else %>
@@ -47,27 +60,37 @@
 
   <!-- TODO we need to sort where the below code fits in with the above -->
   <div class="m-5">
-    <h2>My Rock bookings </h2>
+    <h3>My Rock bookings </h3>
     <% @my_bookings.each do |booking| %>
-      <div>
+      <div class="m-2 d-flex justify-content-between align-items-center w-50" style="border: 2px solid #F148FB;">
         <% if @current_user.rocks.include?(booking.rock) %>
-            <%= cl_image_tag(@rock.photo.key, alt:"Shows a photo of the rock for rent", style: "height: 350px; object-fit: cover;") %>
+          <div>
             <h5> Rock: <%= booking.rock.rock_type %> </h5>
             <p> Start time: <%= booking.start_time %> </p>
             <p> End time: <%= booking.end_time %> </p>
             <p> Renter: <%= booking.user.first_name %> </p>
+          </div>
+          <div class="d-flex flex-column">
+            <div class="p-2">
               <%= link_to "Accept", accept_booking_path(booking), class:"btn btn-success", data: {turbo_method: :patch} %>
+            </div>
+            <div class="p-2">
               <%= link_to "Decline", decline_booking_path(booking), class:"btn btn-warning", data: {turbo_method: :patch} %>
+            </div>
+            </div>
+          </div>
         <% else %>
+          <p>You have no bookings 😢</p>
         <% end %>
+      </div>
       </div>
     <% end %>
   </div>
 
   <div class="m-5">
-    <h2>My Bookings </h2>
+    <h3>My Bookings </h3>
     <% @bookings.each do |booking| %>
-        <div class="my-2 border border-white d-flex">
+        <div class="m-2 d-flex justify-content-between align-items-center w-50" style="border: 2px solid #F148FB;">
           <div>
             <h5> Rock: <%= booking.rock.rock_type %> </h5>
             <p> Start time: <%= booking.start_time %> </p>
