@@ -20,7 +20,7 @@
                     as: :string,
                     input_html: { data: { controller: "datepicker" } }%>
         <div id="price-container">
-          <p>Price: <span id="price">Daily price... <%= @rock.daily_price %></span></p>
+          <p>Price: <span id="price">Daily price... $<%= @rock.daily_price %></span></p>
         </div>
         <%= f.submit "Request Booking", class: "btn btn-primary" %>
       <% end %>
