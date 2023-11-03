@@ -1,14 +1,33 @@
-
 <div class="bookings-container my-5">
-  <h1> Reserve your dream Rock now! </h1>
+  <div class="d-flex justify-content-center">
+    <h1> Reserve your dream Rock now! </h1>
+  </div>
   <div class="bookings-spacing d-flex justify-content-around align-items-center my-5">
-    <img class="img-fluid" src="/assets/minitherock.png" alt="Card image cap" style="height: 350px; object-fit: cover;">
-    <div class="select-dates">
+    <div class="card custom-card shadow" style="border: 2px solid #F148FB;">
+      <%= cl_image_tag(@rock.photo.key, alt: "Shows a photo of the rock for rent", style: "height: 350px; object-fit: cover;") %>
+      <div class="m-5">
+        <h1> <%= @rock.rock_type %> </h1>
+        <p>Description: <%= @rock.description %></p>
+      </div>
+    </div>
+    <div class="select-dates" data-controller="price-calculator">
+      <h2>Select your dates</h2>
       <%= simple_form_for [@rock, @booking] do |f| %>
-        <%= f.input :start_time %>
-        <%= f.input :end_time %>
+            <%= f.input :start_time, as: :string, input_html: { data: { controller: "datepicker", "price-calculator-target": "start_time" } } %>
+            <%= f.input :end_time, as: :string, input_html: { data: { controller: "datepicker", "price-calculator-target": "end_time" } } %>
+      <div id="price-container">
+            <p><span data-price-calculator-target="price" data-daily-price="<%= @rock.daily_price %>"></span></p>
+      </div>
         <%= f.submit "Request Booking", class: "btn btn-primary" %>
+      <% end %>
+      <% if flash[:alert].present? %>
+      <div class="alert alert-danger">
+        <%= flash[:alert] %>
+      </div>
       <% end %>
     </div>
   </div>
 </div>
+
+<%# took me way to long, worked instantly with vanilla javascript but loading was too slow.
+  wanted to turn this into stimulus.fuck stimulus %>

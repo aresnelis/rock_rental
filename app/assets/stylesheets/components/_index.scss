@@ -4,3 +4,28 @@
 @import "form_legend_clear";
 @import "navbar";
 @import "footer";
+
+
+body {
+  background: #360033;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #0b5d93, #360033);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #0b5d93, #360033); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.card-title {
+  font-family: $banner-font;
+  text-shadow: 7px 3px 5px black;
+}
+
+.card-text {
+  color: $pink;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.card-footer {
+  width: 100%;
+  }
+
+  .card-footer .btn {
+  width: 100%;
+  }

@@ -1,13 +1,15 @@
-<div class="show-page-container">
+<div class="show-page-container m-5">
   <div class="d-flex justify-content-around align-items-center show-page-card">
-    <div class="card custom-card shadow">
-      <img class="img-fluid" src="/assets/minitherock.png" alt="Card image cap" style="height: 350px; object-fit: cover;">
-        <h1> <%= @rock.rock_type %> </h1>
-        <p>Description: <%= @rock.description %></p>
+    <div class="card custom-card shadow" style="border: 2px solid #F148FB;">
+      <%= cl_image_tag(@rock.photo.key, alt:"Shows a photo of the rock for rent", style: "height: 350px; object-fit: cover;") %>
+        <div class="m-5">
+          <h1> <%= @rock.rock_type %> </h1>
+          <p>Description: <%= @rock.description %></p>
+        </div>
     </div>
     <div class="booking-section">
       <h4>Daily Price : $<%= @rock.daily_price %> </h4>
-      <%= link_to "Make a booking", new_rock_booking_path(@rock) %>
+      <%= link_to "Make a booking", new_rock_booking_path(@rock), class: "btn btn-primary" %>
     </div>
   </div>
   <div class="reviews-container">
@@ -28,14 +30,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-  <%
-=begin%>
- <% if @rock.photo.attached? %>
-    <%= cl_image_tag @rock.photo.key, width: 400, height: 300, crop: :fill %>
-  <% end %>
-<%
-=end%>

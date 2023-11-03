@@ -14,7 +14,8 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to dashboard_path
     else
-      render :new, status: :unprocessable_entry
+      flash[:alert] = "Please enter start and end dates"
+      redirect_to rock_bookings_path
     end
   end
 

@@ -20,7 +20,7 @@ class RocksController < ApplicationController
     if @rock.save
       redirect_to rock_path(@rock)
     else
-      render :new, status: :unprocessable_entity
+      render "pages/dashboard", status: :unprocessable_entity
     end
   end
 
