@@ -30,7 +30,6 @@ class RocksController < ApplicationController
   end
 
   def update
-    set_rock
     @rock.update(rock_params)
     redirect_to dashboard_path
   end
