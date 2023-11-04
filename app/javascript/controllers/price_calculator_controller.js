@@ -4,8 +4,6 @@ export default class extends Controller {
   static targets = ['price', 'startTime', 'endTime'];
 
   connect() {
-    // this.start_timeTarget.addEventListener('input', this.updatePrice.bind(this));
-    // this.end_timeTarget.addEventListener('input', this.updatePrice.bind(this));
     this.updatePrice();
   }
 
@@ -14,7 +12,6 @@ export default class extends Controller {
     const endTimeValue = this.endTimeTarget.value;
 
     const pricePerDay = parseFloat(this.priceTarget.dataset.dailyPrice);
-
     if (startTimeValue && endTimeValue) {
       const startTime = new Date(startTimeValue);
       const endTime = new Date(endTimeValue);
