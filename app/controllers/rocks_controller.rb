@@ -30,6 +30,8 @@ class RocksController < ApplicationController
   end
 
   def update
+    @rock.update(rock_params)
+    redirect_to dashboard_path
   end
 
   def destroy
