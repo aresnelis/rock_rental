@@ -96,8 +96,7 @@
               <h5> Rock: <%= booking.rock.rock_type %> </h5>
               <p> Start time: <%= booking.start_time %> </p>
               <p> End time: <%= booking.end_time %> </p>
-              <p> testing </p>
-              <p> Total Price: <%= totalPrice %> </p>
+              <p> Total Price: $<%= booking.total_price %> </p>
               <p> Renter: <%= booking.user.first_name.capitalize %> </p>
             </div>
             <div class="d-flex flex-column">
@@ -114,6 +113,7 @@
               <h5> Rock: <%= booking.rock.rock_type %> </h5>
               <p> Start time: <%= booking.start_time %> </p>
               <p> End time: <%= booking.end_time %> </p>
+              <p> Total Price: $<%= booking.total_price %> </p>
               <p> Renter: <%= booking.user.first_name.capitalize %> </p>
             </div>
             <div class="d-flex flex-column">
@@ -142,6 +142,7 @@
               <h5> Rock: <%= booking.rock.rock_type %> </h5>
               <p> Start time: <%= booking.start_time %> </p>
               <p> End time: <%= booking.end_time %> </p>
+              <p> Total Price: $<%= booking.total_price %> </p>
               <p> Owner: <%= booking.rock.user.email %> </p>
             </div>
             <div class="d-flex flex-column">
