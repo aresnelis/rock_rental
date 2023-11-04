@@ -118,14 +118,15 @@
             </div>
             <div class="d-flex flex-column">
               <div class="p-2">
-              <% if (booking.end_time > Time.now) %>
-                <%= link_to "Cancel Booking", booking_path(booking), class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-              <% end %>
-              <% if (booking.end_time < Time.now && booking.review.nil?) %>
-                <%= link_to "Write a Review", new_booking_review_path(booking), class: "btn btn-primary" %>
-              <% end %>
+                <% if (booking.end_time > Time.now) %>
+                  <%= link_to "Cancel Booking", booking_path(booking), class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                <% end %>
+                <% if (booking.end_time < Time.now && booking.review.nil?) %>
+                  <%= link_to "Write a Review", new_booking_review_path(booking), class: "btn btn-primary" %>
+                <% end %>
+              </div>
             </div>
-            </div>
+          </div>
         <% end %>
         </div>
       <% end %>
@@ -135,8 +136,17 @@
 
   <!--# Current users bookings -->
     <div>
-      <h3>What I've booked for myself</h3>
+      <h3>Upcoming Bookings</h3>
+        <% if @upcoming_bookings_for_user.empty? %>
+          <div>
+            <p>You have no upcoming bookings!</p>
+            <%= link_to "Make a booking", root_path %>
+          </div>
+        <% end %>
+
       <% @bookings.each do |booking| %>
+        <% if booking.start_time > Time.now %>
+
           <div class="m-2 d-flex justify-content-between align-items-center w-50" style="border: 2px solid #F148FB;">
             <div>
               <h5> Rock: <%= booking.rock.rock_type %> </h5>
@@ -156,7 +166,7 @@
                 <% elsif booking.status == 'declined' %>
                   <div class="p-2">
                     <p>Your request was declined. Try your luck agian next time! 😿</p>
-                    </div>
+                  </div>
                 <% else %>
                   <div class="p-2">
                     <p>You're request has been approved!! 🪨</p>
@@ -173,5 +183,92 @@
             </div>
           </div>
         <% end %>
+      <% end %>
     </div>
+
+    <div>
+      <h3>Ongoing Bookings</h3>
+      <% @bookings.each do |booking| %>
+        <% if booking.start_time = Time.now %>
+          <div class="m-2 d-flex justify-content-between align-items-center w-50" style="border: 2px solid #F148FB;">
+            <div>
+              <h5> Rock: <%= booking.rock.rock_type %> </h5>
+              <p> Start time: <%= booking.start_time %> </p>
+              <p> End time: <%= booking.end_time %> </p>
+              <p> Owner: <%= booking.rock.user.email %> </p>
+            </div>
+            <div class="d-flex flex-column">
+                <% if booking.status == 'pending' %>
+                  <div class="p-2">
+                    <p>You're request is pending... hold tight 🙀</p>
+                  </div>
+                  <div class="p-2">
+                    <%= link_to "Cancel Booking", booking_path(booking), class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                  </div>
+                <% elsif booking.status == 'declined' %>
+                  <div class="p-2">
+                    <p>Your request was declined. Try your luck agian next time! 😿</p>
+                  </div>
+                <% else %>
+                  <div class="p-2">
+                    <p>You're request has been approved!! 🪨</p>
+                    <% if (booking.end_time > Time.now) %>
+                      <%= link_to "Cancel Booking", booking_path(booking), class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                    <% end %>
+                  </div>
+                <% end %>
+                <% if (booking.end_time < Time.now && booking.review.nil?) %>
+                  <div class="p-2">
+                    <%= link_to "Write a Review", new_booking_review_path(booking), class: "btn btn-primary" %>
+                  </div>
+                <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div>
+
+    <div>
+      <h3>Past Bookings</h3>
+      <% @bookings.each do |booking| %>
+        <% if booking.start_time < Time.now %>
+          <div class="m-2 d-flex justify-content-between align-items-center w-50" style="border: 2px solid #F148FB;">
+            <div>
+              <h5> Rock: <%= booking.rock.rock_type %> </h5>
+              <p> Start time: <%= booking.start_time %> </p>
+              <p> End time: <%= booking.end_time %> </p>
+              <p> Owner: <%= booking.rock.user.email %> </p>
+            </div>
+            <div class="d-flex flex-column">
+                <% if booking.status == 'pending' %>
+                  <div class="p-2">
+                    <p>You're request is pending... hold tight 🙀</p>
+                  </div>
+                  <div class="p-2">
+                    <%= link_to "Cancel Booking", booking_path(booking), class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                  </div>
+                <% elsif booking.status == 'declined' %>
+                  <div class="p-2">
+                    <p>Your request was declined. Try your luck agian next time! 😿</p>
+                  </div>
+                <% else %>
+                  <div class="p-2">
+                    <p>You're request has been approved!! 🪨</p>
+                    <% if (booking.end_time > Time.now) %>
+                      <%= link_to "Cancel Booking", booking_path(booking), class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                    <% end %>
+                  </div>
+                <% end %>
+                <% if (booking.end_time < Time.now && booking.review.nil?) %>
+                  <div class="p-2">
+                    <%= link_to "Write a Review", new_booking_review_path(booking), class: "btn btn-primary" %>
+                  </div>
+                <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
