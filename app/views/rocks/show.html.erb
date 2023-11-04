@@ -1,68 +1,46 @@
 <div class="show-page-container m-5">
-  <div class="d-flex justify-content-around align-items-center show-page-card">
-    <div class="card custom-card shadow" style="border: 2px solid #F148FB;">
-      <%= cl_image_tag(@rock.photo.key, alt:"Shows a photo of the rock for rent", style: "height: 350px; object-fit: cover;") %>
-        <div class="m-5">
-          <h1> <%= @rock.rock_type %> </h1>
-          <p>Description: <%= @rock.description %></p>
-        </div>
+  <div class="d-flex justify-content-between align-items-start show-page-card">
+    <div class="card custom-card shadow" style="border: 2px solid #F148FB; flex: 1;">
+      <%= cl_image_tag(@rock.photo.key, alt: "Shows a photo of the rock for rent", style: "height: 350px; object-fit: cover;") %>
+      <div class="m-5">
+        <h1><%= @rock.rock_type %></h1>
+        <p>Description: <%= @rock.description %></p>
+      </div>
     </div>
-    <div class="booking-section">
-      <h4>Daily Price : $<%= @rock.daily_price %> </h4>
+    <div class="ms-3 p-3" style="flex: 1;">
+      <div class="booking-section">
+        <h4>Daily Price: $<%= @rock.daily_price %></h4>
 
-     <div>
-      <button type="button" class="btn btn-primary mb-5" data-bs-toggle="modal" data-bs-target="#addNewBooking">
-        Reserve your dream rock now!
-      </button>
-      <div class="modal fade" id="addNewBooking" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addNewBookingLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2>Select your dates</h2>
+        <div>
+          <button type="button" class="btn btn-primary mb-5" data-bs-toggle="modal" data-bs-target="#addNewBooking">
+            Reserve your dream rock now!
+          </button>
+          <div class="modal fade" id="addNewBooking" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addNewBookingLabel" aria-hidden="true">
           </div>
-          <div class="modal-body select-dates" data-controller="price-calculator">
-  <%= simple_form_for [@rock, @booking] do |f| %>
-            <%= f.input :start_time, as: :string, input_html: { data: { controller: "datepicker",
-                                                                        action: "change->price-calculator#updatePrice",
-                                                                        price_calculator_target: "startTime" } } %>
-
-            <%= f.input :end_time, as: :string, input_html: { data: { controller: "datepicker",
-                                                                      action: "change->price-calculator#updatePrice",
-                                                                      price_calculator_target: "endTime" } } %>
-          <div id="price-container">
-                <p><span data-price-calculator-target="price" data-daily-price="<%= @rock.daily_price %>"></span></p>
-          </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <%= f.submit "Request Booking", class: "btn btn-primary" %>
+        </div>
+      </div>
+      <div class="mt-4 pt-4">
+        <div class="reviews-container">
+          <h4>Latest reviews</h4>
+          <div class="reviews-cards">
+            <% @rock.reviews.each do |review| %>
+            <div class="review-card" style="border: 0.5px solid #7122FA; mb-3 p-3">
+              <% review.rating.times do %>
+                <i class="fas fa-star star-yellow"></i>
+              <% end %>
+              <div style="margin-top: 8px;">
+                <p><%= review.content %></p>
+                <p class="owner-name" style="font-size: 14px;"><i>by <%= review.booking.user.first_name %></i></p>
+                <%# added logic to only see delete review button if you are the owner of the review %>
+                <% if current_user && current_user.id == review.booking_id %>
+                  <%= link_to "Delete", review_path(review), class: "btn btn-warning", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+                <% end %>
+              </div>
             </div>
-          <% end %>
-          <% if flash[:alert].present? %>
-          <div class="alert alert-danger">
-            <%= flash[:alert] %>
+            <% end %>
           </div>
-          <% end %>
         </div>
       </div>
-    </div>
-
-    </div>
-  </div>
-  <div class="reviews-container">
-    <div class="reviews-cards">
-      <% @rock.reviews.each do |review| %>
-      <div>
-        <p><%= review.rating %>/5
-      </div>
-      <div>
-        <%= review.content %></p>
-        <%# added logic to only see delete review button if you are the owner of the review %>
-        <% if current_user && current_user.id == review.booking_id %>
-          <%= link_to "Delete", review_path(review), class: "btn btn-warning", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-        <% end %>
-    </div>
-      </div>
-      <% end %>
     </div>
   </div>
 </div>
