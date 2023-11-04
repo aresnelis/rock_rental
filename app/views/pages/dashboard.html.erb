@@ -44,7 +44,7 @@
                         <%= f.input :photo, as: :file %>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><%= f.submit %></button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><%= f.submit "Edit", class: "btn btn-primary" %></button>
                       </div>
                       <% end %>
                   </div>
@@ -76,7 +76,7 @@
               </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <%= f.submit "Add Rock" %>
+                  <%= f.submit "Add Rock", class: "btn btn-primary" %>
                 </div>
             </div>
         <% end %>
