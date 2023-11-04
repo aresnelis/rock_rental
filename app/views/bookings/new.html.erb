@@ -13,8 +13,8 @@
     <div class="select-dates" data-controller="price-calculator">
       <h2>Select your dates</h2>
       <%= simple_form_for [@rock, @booking] do |f| %>
-            <%= f.input :start_time, as: :string, input_html: { data: { controller: "datepicker", "price-calculator-target": "start_time" } } %>
-            <%= f.input :end_time, as: :string, input_html: { data: { controller: "datepicker", "price-calculator-target": "end_time" } } %>
+            <%= f.input :start_time, as: :string, input_html: { data: { controller: "datepicker", target: "price-calculator.startTime" } } %>
+            <%= f.input :end_time, as: :string, input_html: { data: { controller: "datepicker", target: "price-calculator.endTime" } } %>
       <div id="price-container">
             <p><span data-price-calculator-target="price" data-daily-price="<%= @rock.daily_price %>"></span></p>
       </div>
@@ -29,5 +29,5 @@
   </div>
 </div>
 
-<%# took me way to long, worked instantly with vanilla javascript but loading was too slow.
+<%# took me way to long, worked instantly with vanilla javascript but loading was behaving poorly.
   wanted to turn this into stimulus.fuck stimulus %>

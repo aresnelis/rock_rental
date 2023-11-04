@@ -1,17 +1,17 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ['price', 'start_time', 'end_time'];
+  static targets = ['price', 'startTime', 'endTime'];
 
   connect() {
-    this.start_timeTarget.addEventListener('input', this.updatePrice.bind(this));
-    this.end_timeTarget.addEventListener('input', this.updatePrice.bind(this));
+    // this.start_timeTarget.addEventListener('input', this.updatePrice.bind(this));
+    // this.end_timeTarget.addEventListener('input', this.updatePrice.bind(this));
     this.updatePrice();
   }
 
   updatePrice() {
-    const startTimeValue = this.start_timeTarget.value;
-    const endTimeValue = this.end_timeTarget.value;
+    const startTimeValue = this.startTimeTarget.value;
+    const endTimeValue = this.endTimeTarget.value;
 
     const pricePerDay = parseFloat(this.priceTarget.dataset.dailyPrice);
 
