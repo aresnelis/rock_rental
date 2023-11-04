@@ -41,7 +41,7 @@ class RocksController < ApplicationController
   private
 
   def rock_params
-    params.require(:rock).permit(:type, :daily_price, :description, :photo)
+    params.require(:rock).permit(:rock_type, :daily_price, :description, :photo)
   end
 
   def set_rock
