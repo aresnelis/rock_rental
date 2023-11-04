@@ -87,14 +87,15 @@
             </div>
             <div class="d-flex flex-column">
               <div class="p-2">
-              <% if (booking.end_time > Time.now) %>
-                <%= link_to "Cancel Booking", booking_path(booking), class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-              <% end %>
-              <% if (booking.end_time < Time.now && booking.review.nil?) %>
-                <%= link_to "Write a Review", new_booking_review_path(booking), class: "btn btn-primary" %>
-              <% end %>
+                <% if (booking.end_time > Time.now) %>
+                  <%= link_to "Cancel Booking", booking_path(booking), class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                <% end %>
+                <% if (booking.end_time < Time.now && booking.review.nil?) %>
+                  <%= link_to "Write a Review", new_booking_review_path(booking), class: "btn btn-primary" %>
+                <% end %>
+              </div>
             </div>
-            </div>
+          </div>
         <% end %>
         </div>
       <% end %>
@@ -107,7 +108,6 @@
             <p>You have no upcoming bookings!</p>
             <%= link_to "Make a booking", root_path %>
           </div>
-        <% else %>
         <% end %>
 
       <% @bookings.each do |booking| %>
@@ -131,7 +131,7 @@
                 <% elsif booking.status == 'declined' %>
                   <div class="p-2">
                     <p>Your request was declined. Try your luck agian next time! 😿</p>
-                    </div>
+                  </div>
                 <% else %>
                   <div class="p-2">
                     <p>You're request has been approved!! 🪨</p>
@@ -173,7 +173,7 @@
                 <% elsif booking.status == 'declined' %>
                   <div class="p-2">
                     <p>Your request was declined. Try your luck agian next time! 😿</p>
-                    </div>
+                  </div>
                 <% else %>
                   <div class="p-2">
                     <p>You're request has been approved!! 🪨</p>
@@ -190,7 +190,7 @@
             </div>
           </div>
         <% end %>
-        <% end %>
+      <% end %>
     </div>
     <div>
 
@@ -216,7 +216,7 @@
                 <% elsif booking.status == 'declined' %>
                   <div class="p-2">
                     <p>Your request was declined. Try your luck agian next time! 😿</p>
-                    </div>
+                  </div>
                 <% else %>
                   <div class="p-2">
                     <p>You're request has been approved!! 🪨</p>
@@ -233,8 +233,7 @@
             </div>
           </div>
         <% end %>
-        <% end %>
+      <% end %>
     </div>
-    <div>
-
+  </div>
 </div>
