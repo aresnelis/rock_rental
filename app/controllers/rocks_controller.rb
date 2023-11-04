@@ -8,7 +8,8 @@ class RocksController < ApplicationController
 
   def show
     @rock = Rock.find(params[:id])
-    end
+    @booking = Booking.new
+  end
 
   def new
     @rock = Rock.new
@@ -30,6 +31,8 @@ class RocksController < ApplicationController
   end
 
   def update
+    @rock.update(rock_params)
+    redirect_to dashboard_path
   end
 
   def destroy

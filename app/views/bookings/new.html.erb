@@ -12,9 +12,14 @@
     </div>
     <div class="select-dates" data-controller="price-calculator">
       <h2>Select your dates</h2>
-      <%= simple_form_for [@rock, @booking] do |f| %>
-            <%= f.input :start_time, as: :string, input_html: { data: { controller: "datepicker", "price-calculator-target": "start_time" } } %>
-            <%= f.input :end_time, as: :string, input_html: { data: { controller: "datepicker", "price-calculator-target": "end_time" } } %>
+    <%= simple_form_for [@rock, @booking] do |f| %>
+            <%= f.input :start_time, as: :string, input_html: { data: { controller: "datepicker",
+                                                                        action: "change->price-calculator#updatePrice",
+                                                                        price_calculator_target: "startTime" } } %>
+
+            <%= f.input :end_time, as: :string, input_html: { data: { controller: "datepicker",
+                                                                      action: "change->price-calculator#updatePrice",
+                                                                      price_calculator_target: "endTime" } } %>
       <div id="price-container">
             <p><span data-price-calculator-target="price" data-daily-price="<%= @rock.daily_price %>"></span></p>
       </div>

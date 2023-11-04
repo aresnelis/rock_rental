@@ -14,20 +14,45 @@
             <div class="card custom-card shadow">
               <%= cl_image_tag(rock.photo.key, alt:"Shows a photo of the rock for rent", style: "height: 350px; object-fit: contain;") %>
             </div>
-          <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center m-2">
-            <div>
-              <h5 class="card-title flex-grow-1"><%= rock.rock_type %></h5>
-            </div>
-            <div>
-              <h5 class="card-title">$<%= rock.daily_price %>/day</h5>
-            </div>
-          </div>
-          <p class="card-text" style="height: 50px; overflow: auto;"><%= rock.description %></p>
-          </div>
-          <div class="card-footer text-muted my-2">
-            <%= link_to "Delete Rock", rock_path(rock), class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-          </div>
+
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center m-2">
+                  <div>
+                    <h5 class="card-title flex-grow-1"><%= rock.rock_type %></h5>
+                  </div>
+                  <div>
+                    <h5 class="card-title">$<%= rock.daily_price %>/day</h5>
+                  </div>
+                </div>
+                  <p class="card-text" style="height: 50px; overflow: auto;"><%= rock.description %></p>
+              </div>
+              <!-- Modal to trigger edit form-->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editRockModal">Edit</button>
+              <!-- edit form-->
+              <div class="modal fade" id="editRockModal" tabindex="-1" aria-labelledby="editRockModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                      <div class="modal-body">
+                        <%= simple_form_for(rock) do |f| %>
+                        <%= f.input :rock_type %>
+                        <%= f.input :daily_price %>
+                        <%= f.input :description %>
+                        <%= f.input :photo, as: :file %>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><%= f.submit "Edit", class: "btn btn-primary" %></button>
+                      </div>
+                      <% end %>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer text-muted my-2">
+                <%= link_to "Delete Rock", rock_path(rock), class:"btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+              </div>
           </div>
         <% end %>
       </div>
@@ -51,13 +76,17 @@
               </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <%= f.submit "Add Rock" %>
+                  <%= f.submit "Add Rock", class: "btn btn-primary" %>
                 </div>
             </div>
         <% end %>
     </div>
   </div>
 
+
+
+  <!-- Current users bookings for their rocks -->
+  <!-- TODO we need to sort where the below code fits in with the above -->
     <div class="mb-5">
       <h3>My Rock Bookings </h3>
       <% @my_bookings.each do |booking| %>
@@ -67,6 +96,7 @@
               <h5> Rock: <%= booking.rock.rock_type %> </h5>
               <p> Start time: <%= booking.start_time %> </p>
               <p> End time: <%= booking.end_time %> </p>
+              <p> Total Price: $<%= booking.total_price %> </p>
               <p> Renter: <%= booking.user.first_name.capitalize %> </p>
             </div>
             <div class="d-flex flex-column">
@@ -83,6 +113,7 @@
               <h5> Rock: <%= booking.rock.rock_type %> </h5>
               <p> Start time: <%= booking.start_time %> </p>
               <p> End time: <%= booking.end_time %> </p>
+              <p> Total Price: $<%= booking.total_price %> </p>
               <p> Renter: <%= booking.user.first_name.capitalize %> </p>
             </div>
             <div class="d-flex flex-column">
@@ -101,6 +132,9 @@
       <% end %>
     </div>
 
+
+
+  <!--# Current users bookings -->
     <div>
       <h3>Upcoming Bookings</h3>
         <% if @upcoming_bookings_for_user.empty? %>
@@ -118,6 +152,7 @@
               <h5> Rock: <%= booking.rock.rock_type %> </h5>
               <p> Start time: <%= booking.start_time %> </p>
               <p> End time: <%= booking.end_time %> </p>
+              <p> Total Price: $<%= booking.total_price %> </p>
               <p> Owner: <%= booking.rock.user.email %> </p>
             </div>
             <div class="d-flex flex-column">
