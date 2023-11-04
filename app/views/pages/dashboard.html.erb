@@ -27,9 +27,9 @@
                   <p class="card-text" style="height: 50px; overflow: auto;"><%= rock.description %></p>
               </div>
               <!-- Modal to trigger edit form-->
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editRockModal">Edit</button>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editRockModal-<%= rock.id %>">Edit</button>
               <!-- edit form-->
-              <div class="modal fade" id="editRockModal" tabindex="-1" aria-labelledby="editRockModalLabel" aria-hidden="true">
+              <div class="modal fade" id="editRockModal-<%= rock.id %>" tabindex="-1" aria-labelledby="editRockModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
