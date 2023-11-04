@@ -1,1 +1,10 @@
 <h1>Edit a rock</h1>
+<%= form_with model: @rock do |f| %>
+  <%= f.label :rock_type %>
+  <%= f.text_field :rock_type %>
+  <%= f.label :daily_price %>
+  <%= f.text_field :daily_price %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <%= f.submit %>
+<% end %>
