@@ -9,7 +9,38 @@
     </div>
     <div class="booking-section">
       <h4>Daily Price : $<%= @rock.daily_price %> </h4>
-      <%= link_to "Make a booking", new_rock_booking_path(@rock), class: "btn btn-primary" %>
+
+     <div>
+      <button type="button" class="btn btn-primary mb-5" data-bs-toggle="modal" data-bs-target="#addNewBooking">
+        Reserve your dream rock now!
+      </button>
+      <div class="modal fade" id="addNewBooking" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addNewBookingLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Select your dates</h2>
+          </div>
+          <div class="modal-body select-dates" data-controller="price-calculator">
+          <%= simple_form_for [@rock, @booking] do |f| %>
+                <%= f.input :start_time, as: :string, input_html: { data: { controller: "datepicker", "price-calculator-target": "start_time" } } %>
+                <%= f.input :end_time, as: :string, input_html: { data: { controller: "datepicker", "price-calculator-target": "end_time" } } %>
+          <div id="price-container">
+                <p><span data-price-calculator-target="price" data-daily-price="<%= @rock.daily_price %>"></span></p>
+          </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <%= f.submit "Request Booking", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+          <% if flash[:alert].present? %>
+          <div class="alert alert-danger">
+            <%= flash[:alert] %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
     </div>
   </div>
   <div class="reviews-container">
