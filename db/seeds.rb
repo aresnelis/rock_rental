@@ -9,15 +9,15 @@
 require 'uri'
 
 rocks_data = [
-  { rock_type: "Igneous", daily_price: 19.99, description: "Rocks formed from solidified molten material.", photo_url: "https://res.cloudinary.com/di8qjnwgb/image/upload/v1698916025/1_r3s6ld.jpg"},
-  { rock_type: "Metamorphic", daily_price: 24.99, description: "Rocks that have undergone a change in texture and composition.", photo_url: "https://res.cloudinary.com/di8qjnwgb/image/upload/v1698916026/2_syieut.jpg" },
-  { rock_type: "Granite", daily_price: 29.99, description: "A common type of igneous rock with a speckled appearance.", photo_url: "https://res.cloudinary.com/di8qjnwgb/image/upload/v1698916026/3_vxdhlf.jpg" },
+  { rock_type: "Igneous", daily_price: 19.99, description: "Rocks formed from solidified molten material.", photo_url: "https://res.cloudinary.com/ddlpamboz/image/upload/v1702544690/6_qxpm5z_1_zphjw3.webp"},
+  { rock_type: "Metamorphic", daily_price: 24.99, description: "Rocks that have undergone a change in texture and composition.", photo_url: "https://res.cloudinary.com/ddlpamboz/image/upload/v1702544499/3_vxdhlf_hbtulv.jpg" },
+  { rock_type: "Granite", daily_price: 29.99, description: "A common type of igneous rock with a speckled appearance.", photo_url: "https://res.cloudinary.com/ddlpamboz/image/upload/v1702544500/9_pdrncl_k1zffk.jpg" },
   { rock_type: "Limestone", daily_price: 12.99, description: "A sedimentary rock composed of calcium carbonate.", photo_url: "https://res.cloudinary.com/di8qjnwgb/image/upload/v1698916026/4_ytefxb.jpg" },
-  { rock_type: "Schist", daily_price: 22.99, description: "A metamorphic rock with a foliated texture.", photo_url: "https://res.cloudinary.com/di8qjnwgb/image/upload/v1698916025/5_jihzng.jpg" },
-  { rock_type: "Basalt", daily_price: 18.99, description: "An igneous rock commonly found in volcanic areas.", photo_url: "https://res.cloudinary.com/di8qjnwgb/image/upload/v1698916026/6_qxpm5z.webp" },
-  { rock_type: "Sandstone", daily_price: 14.99, description: "A sedimentary rock made up of sand-sized grains.", photo_url: "https://res.cloudinary.com/di8qjnwgb/image/upload/v1698916025/7_fnt0wy.webp" },
-  { rock_type: "Marble", daily_price: 26.99, description: "A metamorphic rock known for its use in sculptures and buildings.", photo_url: "https://res.cloudinary.com/di8qjnwgb/image/upload/v1698916025/8_gocmly.jpg" },
-  { rock_type: "Quartzite", daily_price: 21.99, description: "A hard and durable metamorphic rock composed of quartz grains.", photo_url: "https://res.cloudinary.com/di8qjnwgb/image/upload/v1698916025/9_pdrncl.jpg" },
+  { rock_type: "Schist", daily_price: 22.99, description: "A metamorphic rock with a foliated texture.", photo_url: "https://res.cloudinary.com/ddlpamboz/image/upload/v1702544499/2_syieut_kadzep.jpg" },
+  { rock_type: "Basalt", daily_price: 18.99, description: "An igneous rock commonly found in volcanic areas.", photo_url: "https://res.cloudinary.com/ddlpamboz/image/upload/v1702544499/5_jihzng_cvpqze.jpg" },
+  { rock_type: "Sandstone", daily_price: 14.99, description: "A sedimentary rock made up of sand-sized grains.", photo_url: "https://res.cloudinary.com/ddlpamboz/image/upload/v1702544499/1_r3s6ld_zbveio.jpg" },
+  { rock_type: "Marble", daily_price: 26.99, description: "A metamorphic rock known for its use in sculptures and buildings.", photo_url: "https://res.cloudinary.com/ddlpamboz/image/upload/v1702544591/7_fnt0wy_1_hs5w18.webp" },
+  { rock_type: "Quartzite", daily_price: 21.99, description: "A hard and durable metamorphic rock composed of quartz grains.", photo_url: "https://res.cloudinary.com/ddlpamboz/image/upload/v1702544499/8_gocmly_melliu.jpg" },
 ]
 
 puts 'Cleaning database'

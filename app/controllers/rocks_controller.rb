@@ -7,7 +7,6 @@ class RocksController < ApplicationController
   end
 
   def show
-    @rock = Rock.find(params[:id])
     @booking = Booking.new
   end
 
@@ -26,7 +25,6 @@ class RocksController < ApplicationController
   end
 
   def edit
-    set_rock
   end
 
   def update

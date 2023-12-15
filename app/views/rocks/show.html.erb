@@ -16,7 +16,7 @@
             Reserve your dream rock now!
           </button>
           <div class="modal fade" id="addNewBooking" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addNewBookingLabel" aria-hidden="true">
-           <div class="modal-dialog">
+            <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <h2>Select your dates</h2>
@@ -52,7 +52,7 @@
           <h4>Latest reviews</h4>
           <div class="reviews-cards">
             <% @rock.reviews.each do |review| %>
-            <div class="review-card" style="border: 0.5px solid #7122FA; mb-3 p-3">
+            <div class="review-card p-3" style="border: 0.5px solid #7122FA; mb-3 p-3">
               <% review.rating.times do %>
                 <i class="fas fa-star star-yellow"></i>
               <% end %>
